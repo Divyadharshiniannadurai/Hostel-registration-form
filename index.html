@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Form Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        form { width: 300px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        input { width: 100%; padding: 8px; margin: 5px 0; }
+        .error { color: red; font-size: 14px; }
+    </style>  
+</head>
+<body>
+    <h2>Hostel Registration Form</h2>
+    <form id="hostel">
+        <input type="email" id="email" placeholder="Enter Email">
+        <div class="error" id="emailError"></div>
+
+        <input type="password" id="password" placeholder="Enter Password"> 
+        <div class="error" id="passwordError"></div>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+
+            emailError.textContent = passwordError.textContent = "";
+
+            if (!email.match(/^\S+@\S+\.\S+$/)) {
+                emailError.textContent = "Enter a valid email!";
+                return;
+            }
+
+            if (password.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters!";
+                return;
+            }
+
+            alert("Form submitted successfully!");
+        }
+    </script>
+
+</body>
+</html>
