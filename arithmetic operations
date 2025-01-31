@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Fee Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        input { width: 100px; padding: 5px; margin: 5px; }
+        button { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Hostel Fee Calculator</h2>
+
+    <label>Room Rent:</label>
+    <input type="number" id="roomRent" value="5000"><br>
+
+    <label>Food Charges:</label>
+    <input type="number" id="foodCharges" value="3000"><br>
+
+    <label>Other Expenses:</label>
+    <input type="number" id="extraCharges" value="500"><br>
+
+    <button onclick="calculateTotal()">Calculate Total Fee</button>
+    <h3>Total Fee: ₹<span id="totalFee">0</span></h3>
+
+    <h2>Bill Splitting</h2>
+    <label>Number of Roommates:</label>
+    <input type="number" id="roommates" value="2"><br>
+
+    <button onclick="splitBill()">Split Bill</button>
+    <h3>Each Person Pays: ₹<span id="splitAmount">0</span></h3>
+
+    <script>
+        function calculateTotal() {
+            let roomRent = parseFloat(document.getElementById("roomRent").value);
+            let foodCharges = parseFloat(document.getElementById("foodCharges").value);
+            let extraCharges = parseFloat(document.getElementById("extraCharges").value);
+            
+            let total = roomRent + foodCharges + extraCharges;
+            document.getElementById("totalFee").textContent = total;
+        }
+
+        function splitBill() {
+            let totalFee = parseFloat(document.getElementById("totalFee").textContent);
+            let roommates = parseInt(document.getElementById("roommates").value);
+
+            if (roommates > 0) {
+                let amountPerPerson = totalFee / roommates;
+                document.getElementById("splitAmount").textContent = amountPerPerson.toFixed(2);
+            } else {
+                alert("Number of roommates must be greater than zero!");
+            }
+        }
+    </script>
+</body>
+</html>
